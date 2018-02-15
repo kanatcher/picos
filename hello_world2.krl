@@ -1,4 +1,4 @@
-ruleset hello_world {
+ruleset hello_world2 {
   meta {
     name "Hello World"
     description <<
@@ -32,15 +32,11 @@ A first ruleset for the Quickstart
     
     pre {
        default = "Monkey"
-       name = event:attr("name").defaultsTo(default).klog("The name is: ")
+       name = (event:attr("name").isnull()) => "Monkey" | event:attr("name")
     }
    
     send_directive("say", {"something": "Hello, " + name})
  
   }
 }
-
-
-
-
 
